@@ -1,8 +1,8 @@
 {
-  "name": "react-recoil-emotion-boilerplate",
+  "name": "client",
   "version": "0.1.0",
-  "description": "React&TypeScript boilerplate using Recoil, Emotion",
-  "repository": "https://github.com/telbby/react-recoil-emotion-boilerplate",
+  "description": "client for chat",
+  "repository": "https://github.com/telbby/chat-study",
   "license": "MIT",
   "private": true,
   "scripts": {

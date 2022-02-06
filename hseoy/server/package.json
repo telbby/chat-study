@@ -1,10 +1,9 @@
 {
-  "name": "telbby-backend",
+  "name": "server",
   "version": "1.0.0",
-  "description": "telbby backend application",
+  "description": "server for chat",
   "main": "src/app.ts",
-  "repository": "https://github.com/w-campers/telbby-backend.git",
-  "author": "w-campers",
+  "repository": "https://github.com/telbby/chat-study",
   "license": "MIT",
   "scripts": {
     "dev": "env-cmd --silent -f .env.dev nodemon --exec ts-node src/app.ts",
