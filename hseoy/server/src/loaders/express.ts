@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express, { Application } from 'express';
 import morgan from 'morgan';
+import session from 'express-session';
 
 import routes from '../api';
 import errorHandler from '../api/middlewares/error';
@@ -12,10 +13,21 @@ export default (app: Application): void => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cors(config.corsOptions));
+  app.use(
+    session({
+      secret: config.session.secret,
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+        httpOnly: true,
+        secure: false,
+      },
+    }),
+  );
 
   app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 
-  app.use(config.api.prefix, routes);
+  app.use(config.api.prefix, routes());
 
   app.all('*', (_req, _res, next) => {
     next(new ErrorResponse(commonError.notFound));

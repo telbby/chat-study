@@ -10,4 +10,7 @@ export default {
     credentials: true,
     optionsSuccessStatus: 200,
   },
+  session: {
+    secret: process.env.SESSION_SECRET || 'SECRET_KEY',
+  },
 };

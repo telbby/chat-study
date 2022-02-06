@@ -1,21 +1,19 @@
 import { NextFunction, Request, Response } from 'express';
-import Joi from 'joi';
+import { idValidator, pwValidator } from '@telbby/validation';
 
 import ErrorResponse from '../../utils/error-response';
+import { AdminLoginRequestBody } from '../../types';
 
-export const userTestValidation = (req: Request, res: Response, next: NextFunction) => {
-  const schema = Joi.object({
-    id: Joi.number().required().messages({
-      'any.required': `아이디를 입력해주세요`,
-    }),
-  });
+export const userCreateValidation = (req: Request, _res: Response, next: NextFunction): void => {
+  const { userId = '', password = '' } = req.body as AdminLoginRequestBody;
 
-  const validationResult = schema.validate(req.query);
+  const [isIdValid, idWarningMessage] = idValidator(userId);
+  const [isPwValid, pwWarningMessage] = pwValidator(password);
 
-  if (validationResult.error) {
+  if (!isIdValid || !isPwValid) {
     throw new ErrorResponse({
       statusCode: 400,
-      message: validationResult.error.message,
+      message: idWarningMessage || pwWarningMessage,
     });
   }
 

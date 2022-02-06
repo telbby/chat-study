@@ -13,8 +13,11 @@
     "prettier:write": "yarn prettier --write ."
   },
   "dependencies": {
+    "@telbby/validation": "^1.1.4",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "joi": "^17.4.2",
     "morgan": "^1.10.0",
     "reflect-metadata": "^0.1.13",
@@ -24,8 +27,10 @@
     "typeorm-typedi-extensions": "^0.4.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/express-session": "^1.17.4",
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.11.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",

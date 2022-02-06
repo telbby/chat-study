@@ -1,10 +1,24 @@
 import { Router } from 'express';
+import isAuth from '../../middlewares/isAuth';
+import { userCreateValidation } from '../../validation/user';
 
-import { userTestValidation } from '../../validation/user';
-import { handleUserTest } from './users.controller';
+import {
+  handleGetCurrentUser,
+  handleCreateAdminUser,
+  handleDeleteCurrentUser,
+  handleCreateGuestUser,
+} from './users.controller';
 
-const router = Router();
+const userRouter = Router();
 
-router.get('/', userTestValidation, handleUserTest);
+export default (router: Router): Router => {
+  router.use('/users', userRouter);
 
-export default router;
+  userRouter.post('/admin', userCreateValidation, handleCreateAdminUser);
+  userRouter.post('/guest', handleCreateGuestUser);
+
+  userRouter.get('/', isAuth, handleGetCurrentUser);
+  userRouter.delete('/', isAuth, handleDeleteCurrentUser);
+
+  return router;
+};

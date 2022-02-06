@@ -1,9 +1,16 @@
 import { Router } from 'express';
+import { loginValidation } from '../../validation/auth';
 
-import { handleAuthTest } from './auth.controller';
+import { handleAdminLogin, handleGuestLogin, handleLogout } from './auth.controller';
 
-const router = Router();
+const authRouter = Router();
 
-router.get('/', handleAuthTest);
+export default (router: Router): Router => {
+  router.use('/auth', authRouter);
 
-export default router;
+  authRouter.post('/admin', loginValidation, handleAdminLogin);
+  authRouter.post('/guest', handleGuestLogin);
+  authRouter.delete('/', handleLogout);
+
+  return router;
+};
