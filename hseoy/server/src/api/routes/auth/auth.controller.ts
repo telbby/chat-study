@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import Container from 'typedi';
+import { Container } from 'typedi';
 import AuthService from '../../../services/auth';
 import { GuestLoginRequestBody, AdminLoginRequestBody } from '../../../types';
 
